@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android Release APK
 
 on:
   workflow_dispatch:
@@ -20,13 +20,13 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build Debug APK
+      - name: Build Release APK
         run: |
           chmod +x ./gradlew
-          ./gradlew :app:android:assembleDebug
+          ./gradlew :app:android:assembleRelease
 
-      - name: Upload APK
+      - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: AppMarket-debug
-          path: app/android/build/outputs/apk/debug/*.apk
+          name: AppMarket-release
+          path: app/android/build/outputs/apk/release/*.apk
